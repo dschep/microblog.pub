@@ -1,1 +1,17 @@
 // override vars for theming here
+$background: #2b3e50;
+$text-color: #EBEBEB;
+$primary-button-text-color: #333;
+$form-text-color: #333;
+$primary-color: #F5F5F5;
+$secondary-color: #DF691A;
+$light-background: red;
+$muted-color: #AAA;
+#mountains {
+    z-index: -10000;
+    position: absolute;
+    top: -150px;
+    left: 0;
+    right: 0;
+    height: 500px;
+}
