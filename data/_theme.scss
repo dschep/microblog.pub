@@ -17,3 +17,9 @@ $muted-color: #AAA;
     right: 0;
     height: 500px;
 }
+.ap-object {
+    word-wrap: break-word;
+    pre {
+        white-space: pre-wrap;
+    }
+}
