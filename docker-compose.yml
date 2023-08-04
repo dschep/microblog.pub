@@ -11,3 +11,10 @@ services:
       - ./app/static:/app/app/static
     ports:
       - "8000:8000"
+  proxy:
+    image: caddy:latest
+    command: caddy reverse-proxy --from social.schep.me:443 --to server:8000
+    ports:
+      - "443:443"
+    links:
+      - server
