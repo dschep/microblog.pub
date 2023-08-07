@@ -45,3 +45,7 @@ compile-scss:
 .PHONY: import-mastodon-following-accounts 
 import-mastodon-following-accounts:
 	-docker run --rm --volume `pwd`/data:/app/data --volume `pwd`/app/static:/app/app/static microblogpub/microblogpub inv import-mastodon-following-accounts $(path)
+
+.PHONY: export-following-accounts 
+export-following-accounts:
+	-docker run --rm --volume `pwd`/data:/app/data --volume `pwd`/app/static:/app/app/static microblogpub/microblogpub inv export-following-accounts $(path)

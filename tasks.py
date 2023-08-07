@@ -422,3 +422,25 @@ def import_mastodon_following_accounts(ctx, path):
 
     count = asyncio.run(_import_following())
     logger.info(f"Import done, {count} follow requests sent")
+
+
+@task
+def export_following_accounts(ctx, path):
+    # type: (Context, str) -> None
+    from loguru import logger
+
+    from app.boxes import _get_following
+    from app.boxes import _send_follow
+    from app.database import async_session
+    from app.utils.mastodon import get_actor_urls_from_following_accounts_csv_file
+
+    async def _export_following() -> None:
+        csv = "Account address,Show boosts\n"
+        async with async_session() as db_session:
+            for following in await _get_following(db_session):
+                csv += f"{following.actor.handle},{following.actor.are_announces_hidden_from_stream}\n"
+            await db_session.commit()
+        Path(path).write_text(csv)
+
+    asyncio.run(_export_following())
+    logger.info(f"Export done")
