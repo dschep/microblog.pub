@@ -438,7 +438,7 @@ def export_following_accounts(ctx, path):
         csv = "Account address,Show boosts\n"
         async with async_session() as db_session:
             for following in await _get_following(db_session):
-                csv += f"{following.actor.handle},{following.actor.are_announces_hidden_from_stream}\n"
+                csv += f"{following.actor.handle},{str(not following.actor.are_announces_hidden_from_stream).lowercase()}\n"
             await db_session.commit()
         Path(path).write_text(csv)
 
