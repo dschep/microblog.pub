@@ -106,6 +106,7 @@ class Config(pydantic.BaseModel):
     metadata: list[_ProfileMetadata] | None = None
     code_highlighting_theme = "friendly_grayscale"
     blocked_servers: list[_BlockedServer] = []
+    server_block_lists: list[str] = []
     custom_footer: str | None = None
     emoji: str | None = None
     also_known_as: str | None = None
