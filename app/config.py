@@ -183,6 +183,9 @@ if CONFIG.privacy_replace:
     PRIVACY_REPLACE = {pr.domain: pr.replace_by for pr in CONFIG.privacy_replace}
 
 BLOCKED_SERVERS = {blocked_server.hostname for blocked_server in CONFIG.blocked_servers}
+for blocklist in CONFIG.server_block_lists:
+    for line in open(blocklist):
+        BLOCKED_SERVERS.add(line.split(",")[0])
 ALSO_KNOWN_AS = CONFIG.also_known_as
 CUSTOM_CONTENT_SECURITY_POLICY = CONFIG.custom_content_security_policy
 
